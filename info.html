@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info Uzbekistan</title>
+    <link rel="stylesheet" href="./info.css" />
+  </head>
+  <body>
+    <div class="map-container">
+      <!-- O‘zbekiston xaritasi -->
+      <img
+        src="https://www.researchgate.net/publication/383493438/figure/fig1/AS:11431281281154282@1727747993657/Uzbekistan-regional-map-Anonymous-2024.png"
+        alt=""
+      />
+
+      <!-- Nuqtalar -->
+      <div
+        class="map-point"
+        style="top: 50%; left: 80%"
+        data-info="Toshkent - O‘zbekistonning poytaxti."
+      ></div>
+      <div
+        class="map-point"
+        style="top: 67%; left: 65%"
+        data-info="Samarqand - O‘zbekistonning qadimiy shahri."
+      ></div>
+      <div
+        class="map-point"
+        style="top: 67%; left: 45%"
+        data-info="Buxoro - tarixiy obidalari bilan mashhur shahar."
+      ></div>
+      <div
+        class="map-point"
+        style="top: 49%; left: 29%"
+        data-info="Xorazm - O‘zbekistonning shimoli-g‘arbida joylashgan hudud bo‘lib, qadimiy madaniyat va tarixga ega. Xorazmning markazi **Urganch shahri**. Ushbu hudud Amudaryo bo‘yida joylashgan va o‘zining boy me'moriy yodgorliklari, jumladan, **Ichan-Qal’a** (Xiva) bilan mashhur. Xorazm asrlar davomida Markaziy Osiyoning muhim savdo va madaniy markazlaridan biri bo‘lgan. Shu bilan birga, hudud o‘zining an’anaviy san’ati, hunarmandchiligi va mazali taomlari bilan ajralib turadi."
+      ></div>
+      <!-- Ma'lumot oynasi -->
+      <div class="info-box" id="infoBox"></div>
+    </div>
+
+    <script>
+      // Barcha nuqtalarni tanlash
+      const points = document.querySelectorAll(".map-point");
+      const infoBox = document.getElementById("infoBox");
+
+      // Nuqta bosilganda ishlovchi funksiya
+      points.forEach((point) => {
+        point.addEventListener("click", (e) => {
+          const info = point.getAttribute("data-info"); // Ma'lumotni olish
+          infoBox.style.display = "block";
+          infoBox.textContent = info;
+
+          // Info-box joylashuvi
+          infoBox.style.top = `${e.clientY}px`;
+          infoBox.style.left = `${e.clientX}px`;
+        });
+      });
+
+      // Sahifa bo'sh joyiga bosganda ma'lumotni yashirish
+      document.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("map-point")) {
+          infoBox.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
